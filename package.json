@@ -1,0 +1,100 @@
+{
+  "name": "quickinventory",
+  "productName": "quickinventory",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
+  },
+  "keywords": [],
+  "author": {
+    "name": "Daniel Belcher",
+    "email": "daniel.belcher.cs@gmail.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "quickinventory"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/index.html",
+                  "js": "./src/renderer.tsx",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.4",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.63",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@vercel/webpack-asset-relocator-loader": "1.7.0",
+    "add": "^2.0.6",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.0.0",
+    "electron": "17.0.1",
+    "eslint": "^8.0.1",
+    "eslint-plugin-import": "^2.25.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.1",
+    "node-loader": "^2.0.0",
+    "prettier": "2.5.1",
+    "source-map-loader": "^3.0.1",
+    "style-loader": "^3.0.0",
+    "typescript": "~4.5.4",
+    "yarn": "^1.22.17"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
